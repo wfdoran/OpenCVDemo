@@ -63,24 +63,30 @@ mask = cv2.GaussianBlur(mask, (ksize, ksize), borderType)
 threshold = 200
 _, mask = cv2.threshold(mask, threshold, 255, cv2.THRESH_BINARY)
 
-canny_thresh1 = ???                # Fix ME!
-canny_thresh2 = ???                # Fix ME!
+canny_thresh1 = 50
+canny_thresh2 = 150
 edges = cv2.Canny(mask, canny_thresh1, canny_thresh2)
 
-# hough_thresh = ???                 # Fix ME!
-# min_line_len = ???                 # Fix ME!
-# max_line_gap = ???                 # Fix ME!
-# lines = cv2.HoughLinesP(edges, 1, np.pi/180, hough_thresh, minLineLength=min_line_len, maxLineGap=max_line_gap)
-# 
-# for line in lines:
-#     x1, y1, x2, y2 = line[0]
-#     pt1 = (x1, y1)
-#     pt2 = (x2, y2)
-#     color = [255, 0, 255]   # purple
-#     thickness = 2
-#     cv2.line(img, pt1, pt2, color, thickness)
-#     line_len = math.???(???,???)          # Fix ME!
-#     print(line, "%.2f" % (line_len,))
+hough_thresh = 20
+min_line_len = 50
+max_line_gap = 10
+lines = cv2.HoughLinesP(edges, 1, np.pi/180, hough_thresh, minLineLength=min_line_len, maxLineGap=max_line_gap)
+
+for line in lines:
+    x1, y1, x2, y2 = line[0]
+    pt1 = (x1, y1)
+    pt2 = (x2, y2)
+    color = [255, 0, 255]   # purple
+    thickness = 2
+    cv2.line(img, pt1, pt2, color, thickness)
+    line_len = math.dist(pt1,pt2)
+    angle = math.degrees(math.atan2(y2 - y1, x2 - x1))
+    if angle < -90:
+        angle += 180
+    if angle > 90:
+        angle -= 180
+    center = ((x1 + x2) / 2, (y1 + y2) / 2)
+    print(line, "%.2f" % (line_len,), center, angle)
     
     
 cv2.imshow("edges", edges)
