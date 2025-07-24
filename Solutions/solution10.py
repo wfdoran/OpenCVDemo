@@ -33,13 +33,13 @@ template = img[145:318,255:345,:]
 cv2.imshow("template", template)
 
 # Search for the template in the image
-res = cv2.matchTemplate(???, ???, cv2.TM_CCOEFF)     # Fix ME!
+res = cv2.matchTemplate(img, template, cv2.TM_CCOEFF)
 
 # minMaxLoc returns four things.  We want the highest scoring location
 # of the template in the picture.  Figure out which of the outputs
 # from minMaxLoc give you the max_val and max_loc.  For the other two
 # use _ to indicate that we don't care about this output.
-???, ???, ???, ??? = cv2.minMaxLoc(res)              # Fix ME!
+_, max_val, _, max_loc = cv2.minMaxLoc(res)
 
 print("max_val: ", max_val)
 print("max_loc: ", max_loc)
