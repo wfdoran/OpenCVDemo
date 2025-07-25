@@ -28,7 +28,7 @@ cv2.imshow("yellow sample", yellow_sample)
 
 red_sample = img[145:318,40:160,:]
 cv2.imshow("red sample", red_sample)
-blue_sample = img[145:381,460:575:]
+blue_sample = img[145:318,460:575:]
 cv2.imshow("blue sample", blue_sample)
 
 """ Bonus: By restructing the third coordinate, we can pull out one
