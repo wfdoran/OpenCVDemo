@@ -22,7 +22,14 @@
     2) waitKey(0) waits until you have focus on the displayed image
        and any key (that what the 0 means) is pressed.
 
-    3) Bonus points if you can read it in as a grayscale image.
+    3) Each pixel correpsonds to three values between 0 and 255
+       (inclusive).  Use
+
+         https://rgbcolorpicker.com/
+
+       to confirm the colors match the pixel values.    
+
+    4) Bonus points if you can read it in as a grayscale image.
 
 """
 import cv2
