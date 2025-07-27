@@ -27,6 +27,7 @@ def blue_location(img):
     score_left   = score_blue(img[:,:cut1,:])   
     score_center = score_blue(img[:,???:???,:])     # Fix ME!
     score_right  = score_blue(img[:,???:???,:])     # Fix ME!
+    print(score_left, score_center, score_right)
 
     # return the region with the highest score
     if ????:                          # Fix ME!
@@ -39,9 +40,11 @@ def blue_location(img):
     return "BUG: this should not happen!"
 
 path = "../Pics/"
-for filename in ["pic2.png", "pic3.png", "pic4.png"]:
-    img = cv2.imread(path + filename)
-    print(filename, " is ", blue_location(img))
+files = ["pic2.png", "pic3.png", "pic4.png"]
+correct = ["right", "center", "left"]
+for i in range(3):
+    img = cv2.imread(path + files[i])
+    print(files[i], " is ", blue_location(img), "correct: ", correct[i])
 
         
 """
