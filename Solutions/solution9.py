@@ -48,6 +48,8 @@ import cv2
 import numpy as np
 import math
 
+major_version = int(cv2.__version__.split('.')[0])
+
 filename = "../Pics/pic116.png"
 
 img = cv2.imread(filename)
@@ -73,7 +75,10 @@ max_line_gap = 10
 lines = cv2.HoughLinesP(edges, 1, np.pi/180, hough_thresh, minLineLength=min_line_len, maxLineGap=max_line_gap)
 
 for line in lines:
-    x1, y1, x2, y2 = line[0]
+    if major_version == 4:
+        x1, y1, x2, y2 = line[0]
+    else:
+        x1, y1, x2, y2 = line
     pt1 = (x1, y1)
     pt2 = (x2, y2)
     color = [255, 0, 255]   # purple
