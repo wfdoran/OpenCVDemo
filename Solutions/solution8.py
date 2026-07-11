@@ -1,8 +1,9 @@
 """Exercise 8
 
-    Following the workflow from last season, after getting the mask
-    for the color of interest, we looked for contours in the mask.
-    These are the borders around the connected regions in the image.
+    Following the workflow from the 2024-2025 season, after getting
+    the mask for the color of interest, we looked for contours in the
+    mask.  These are the borders around the connected regions in the
+    image.
 
     Then for each contour, we asked OpenCV for the best (rotated)
     rectangle around that contour.  Best in this case means minimum
@@ -12,6 +13,7 @@
     * findContours
     * drawContours
     * minAreaRect
+
 """
 
 import cv2

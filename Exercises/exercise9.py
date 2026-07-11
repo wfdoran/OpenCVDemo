@@ -48,6 +48,8 @@ import cv2
 import numpy as np
 import math
 
+# There is a slight change to format of HoughLinesP
+# from OpenCV 4 to OpenCV 5.
 major_version = int(cv2.__version__.split('.')[0])
 
 filename = "../Pics/pic116.png"

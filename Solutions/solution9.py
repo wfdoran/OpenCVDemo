@@ -44,6 +44,8 @@
 
 """
 
+# There is a slight change to format of HoughLinesP
+# from OpenCV 4 to OpenCV 5.
 import cv2
 import numpy as np
 import math

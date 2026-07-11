@@ -2,8 +2,8 @@
 
     The image for the previous exercise was pretty clean with good
     light and no random wires in the pictures.  Now lets look at a
-    real picture from last season.  Start by running this program
-    which pulls out the blue samples
+    real picture from the 2024-2025 season.  Start by running this
+    program which pulls out the blue samples
 
     % python exercise7.py
 
@@ -74,8 +74,8 @@ cv2.waitKey(0)
 cv2.destroyAllWindows
 
 """
-    Bonus 1: Run this program on some of the other pictures from
-      last season.  Did over train by only working with one
+    Bonus 1: Run this program on some of the other pictures from the
+      2024-2025 season.  Did you overtrain by only working with one
       picture?
 """
 

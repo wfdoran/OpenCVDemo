@@ -33,12 +33,12 @@ GREEN = 1
 def runPipeline(image, llrobot):
     img_hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
-    if llrobot[???] == PURPLE:           # Fix ME!
-        lo = (???, 70, 70)               # Fix ME!
-        hi = (???, 255, 255)             # Fix ME!
-    if llrobot[???] == GREEN:            # Fix ME!
-        lo = (???, 70, 70)               # Fix ME!
-        hi = (???, 255, 255)             # Fix ME!
+    if llrobot[0] == PURPLE:
+        lo = (130, 70, 70)
+        hi = (150, 255, 255)
+    if llrobot[0] == GREEN:
+        lo = (70, 70, 70)
+        hi = (90, 255, 255)
 
     img_thresh = cv2.inRange(img_hsv, lo, hi)
 
@@ -50,20 +50,20 @@ def runPipeline(image, llrobot):
     
     # cv2.imshow("thresh", img_thresh)
 
-    contours, _ = cv2.findContours(???, ???, ???)   # Fix ME!  
+    contours, _ = cv2.findContours(img_thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     largestContour = np.array([[]])
 
     # in llpython, use the first parameter tell you if you found
     # an artifact or not.
-    llpython = [???, -1, -1, -1, -1]                # Fix ME!
+    llpython = [0, -1, -1, -1, -1]
 
     # Find the largest contour and draw a rectangle around it
     if len(contours) > 0:
-        largestContour = max(???, key=cv2.contourArea)    # Fix ME!
-        x,y,w,h = cv2.boundingRect(???)                   # Fix ME!
+        largestContour = max(contours, key=cv2.contourArea)
+        x,y,w,h = cv2.boundingRect(largestContour)
         cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 255), 2)
-        llpython = [???, x, y, w, h]
+        llpython = [1, x, y, w, h]
         
     
     return largestContour, image, llpython
@@ -80,12 +80,14 @@ color2string = {GREEN: "green ", PURPLE: "purple"}
 for filename in files:
     for color in [GREEN, PURPLE]:
         img_in = cv2.imread(filename, cv2.IMREAD_COLOR)
-        llrobot = [???, 0, 0, 0, 0, 0, 0, 0]                 # Fix ME!
+        llrobot = [color]
         _, img_out, llpython = runPipeline(img_in, llrobot)
         print(filename, color2string[color], llpython)
 
         # only display pictures where an artifact of the desired color
         # was found.
-        if llpython[???] == ???:                             # Fix ME!
+        if llpython[0] == 1:
             cv2.imshow(filename + " " + color2string[color], img_out)
             cv2.waitKey(0)
+
+cv2.destroyAllWindows
