@@ -1,5 +1,4 @@
-"""
-    Exercise 2
+"""Exercise 2
 
     Color images in OpenCV are just 3-dim numpy arrays!
 
@@ -7,7 +6,11 @@
 
     % python exercise2.py
 
-    Now play around:
+    Now play play around.  For linux users, when you mouse over a
+    pixel, information about that pixel will show up in bottom bar of
+    the windows.  For windows users, make sure to use win_imshow.
+    When you click on pixel, infom about that pixel will printed
+    to the shell. 
 
     Q: What corner is img[0][0]?
 
@@ -16,10 +19,12 @@
     Q: What are the three values for each pixel?  They
        are not RGB, they are ...?
 
-    Exercise: Find a pixel in the blue and yellow samples.  
+    Exercise: Find a pixel in the blue and yellow samples.
+
 """
 
 import cv2
+# from gear_up_utils import win_imshow
 
 filename = "../Pics/pic1.png"
 img = cv2.imread(filename)
@@ -33,6 +38,9 @@ print("Pixel at (233,75): ", img[233][75])     # A red pixel
 # print(img[???][???])   # A blue pixel         Fix ME!
 # print(img[???][???])   # A yellow pixel       Fix ME!
 
+cv2.imshow("image", img)
+# win_imshow("image", img)
+cv2.waitKey(0)
 
 """
     Bonus: you can change the image if you want!  Display

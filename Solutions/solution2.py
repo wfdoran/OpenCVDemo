@@ -6,7 +6,11 @@
 
     % python exercise2.py
 
-    Now play around:
+    Now play play around.  For linux users, when you mouse over a
+    pixel, information about that pixel will show up in bottom bar of
+    the windows.  For windows users, make sure to use win_imshow.
+    When you click on pixel, infom about that pixel will printed
+    to the shell. 
 
     Q: What corner is img[0][0]?
 
@@ -40,6 +44,8 @@ print("Pixel at (233,75): ", img[233][75])     # A red pixel
 print(img[245][540])   # A blue pixel        
 print(img[220][320])   # A yellow pixel      
 
+cv2.imshow("image", img)
+cv2.waitKey(0)
 
 """
     Bonus: you can change the image if you want!  Display
