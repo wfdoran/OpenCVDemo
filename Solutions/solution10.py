@@ -9,7 +9,7 @@
 
     % python exercise10.py
 
-    Why don't we just just this to find samples?  Because it only
+    Why don't we just use this to find samples?  Because it only
     finds templates in the same orientation.  A sample at 45 degrees
     would not be found.
 

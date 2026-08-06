@@ -14,7 +14,7 @@
 
     % python3 exercise3.py
 
-    This displys just the yellow sample,  Work out the ranges
+    This displays just the yellow sample,  Work out the ranges
     to pull out the red and blue samples.
 
 """
@@ -28,10 +28,10 @@ cv2.imshow("yellow sample", yellow_sample)
 
 red_sample = img[145:318,40:160,:]
 cv2.imshow("red sample", red_sample)
-blue_sample = img[145:318,460:575:]
+blue_sample = img[145:318,460:575,:]
 cv2.imshow("blue sample", blue_sample)
 
-""" Bonus: By restructing the third coordinate, we can pull out one
+""" Bonus: By restricting the third coordinate, we can pull out one
     color similar to the bonus in exercise2.  However, here you get a
     2D array since only one value in the last coordinate is preserved.
     OpenCV views this as a gray scale image.

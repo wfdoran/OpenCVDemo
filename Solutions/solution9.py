@@ -36,7 +36,7 @@
     do.  Also, print out the length of each line.  Look up in python
     math library how to do this
 
-    Some more info on the math behind the the Hough Line Transform. 
+    Some more info on the math behind the Hough Line Transform. 
      
        https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html
 

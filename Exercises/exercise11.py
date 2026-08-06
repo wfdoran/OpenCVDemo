@@ -46,7 +46,7 @@ def runPipeline(image, llrobot):
 
     # On the actual Limelight, you cannot display images only
     # return them.  However, during testing on your PC, you
-    # can look at intermediate results if you want to to need
+    # can look at intermediate results if you want to or need
     # to.  Just be sure to comment it out before copying to
     # the Limelight.
     

@@ -18,7 +18,7 @@
     (or google it).
 
     Finally, red is a little unfortunate as its range wraps around
-    zero and we have to use two calls to inRange and add them toegher
+    zero and we have to use two calls to inRange and add them together
     to get all of the red pixels.  Again use your value (or use
     google).
 
@@ -65,6 +65,7 @@ cv2.destroyAllWindows()
 """
 
 def great_score_blue(sub_img):
+    hsv = cv2.cvtColor(sub_img, cv2.COLOR_BGR2HSV)
     lower_blue = np.array([100, 100,  50])
     upper_blue = np.array([140, 255, 255])
     blue_mask = cv2.inRange(hsv, lower_blue, upper_blue)

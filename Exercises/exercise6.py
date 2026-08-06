@@ -18,7 +18,7 @@
     (or google it).
 
     Finally, red is a little unfortunate as its range wraps around
-    zero and we have to use two calls to inRange and add them toegher
+    zero and we have to use two calls to inRange and add them together
     to get all of the red pixels.  Again use your value (or use
     google).
 

@@ -4,7 +4,7 @@
 
     Exercise 4 was a set up for why working with RGB (or BGR) is rarely
     the right way to go when wanting to select pixels of a certain color.
-    In stead, it usually pays off to convert your image into HSV
+    Instead, it usually pays off to convert your image into HSV
 
           H  hue              <->  roughly color
           S  saturation       <->  distance from white
@@ -18,7 +18,7 @@
 
     Run your cursor around the hsv image and see how well the first
     coordinate tracks with color.  Write down a guess at what range
-    of H corresponds to the tdhree colors: blue, red, yellow.  
+    of H corresponds to the three colors: blue, red, yellow.  
 """
 import cv2
 

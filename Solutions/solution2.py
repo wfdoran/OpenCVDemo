@@ -6,11 +6,11 @@
 
     % python exercise2.py
 
-    Now play play around.  For linux users, when you mouse over a
-    pixel, information about that pixel will show up in bottom bar of
-    the windows.  For windows users, make sure to use win_imshow.
-    When you click on pixel, infom about that pixel will printed
-    to the shell. 
+    Now play around.  For linux users, when you mouse over a pixel,
+    information about that pixel will show up in bottom bar of the
+    windows.  For windows users, make sure to use win_imshow.  When
+    you click on pixel, information about that pixel will printed to
+    the shell.
 
     Q: What corner is img[0][0]?
 

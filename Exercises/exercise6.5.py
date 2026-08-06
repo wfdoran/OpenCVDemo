@@ -36,7 +36,7 @@ YELLOW = 3
 def runPipeline(image, llrobot):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
-    # The first paramter tells us what color to look for
+    # The first parameter tells us what color to look for
     color = llrobot[???]                # Fix ME! 
     if color == RED:
         lower_red1 = np.array([  0, 100,  50])
