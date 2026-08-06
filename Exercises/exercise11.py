@@ -1,8 +1,8 @@
 """Exercise 11
 
     In this exercise, you are going to use the Limelight runPipeline
-    interface again.  This time, you are going to find artifacts
-    from the 2025-2026 season and draw boxes around them.
+    interface again.  This time, you are going to find artifacts from
+    the 2025-2026 season and draw boxes around them.
 
     Start by looking up the OpenCV commands findContours,
     boundingRect, and rectangle.
@@ -15,8 +15,10 @@
 
     Use the first parameter in llrobot to tell the Limelight what color
     artifact to look for.  Use the first parameter of llpython for Limelight
-    to tell you if it found one. 
+    to tell you if it found one.
 
+    Bonus: rewrite to detect BioBuzz pollen in the images in
+    ../Pics/pollen_data/images/ 
 """
 
 import cv2
