@@ -52,7 +52,7 @@ cv2.imshow("contours", c_img)
 cv2.imshow("rects", img)
 cv2.imshow("mask", mask)
 cv2.waitKey(0)
-cv2.destroyAllWindows
+cv2.destroyAllWindows()
 
 """
     Bonus: open the page

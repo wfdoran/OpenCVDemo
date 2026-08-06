@@ -100,4 +100,4 @@ cv2.imshow("edges", edges)
 cv2.imshow("original", img)
 cv2.imshow("mask", mask)
 cv2.waitKey(0)
-cv2.destroyAllWindows
+cv2.destroyAllWindows()

@@ -90,4 +90,4 @@ for filename in files:
             cv2.imshow(filename + " " + color2string[color], img_out)
             cv2.waitKey(0)
 
-cv2.destroyAllWindows
+cv2.destroyAllWindows()

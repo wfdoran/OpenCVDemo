@@ -71,7 +71,7 @@ blue_mask = cv2.inRange(hsv, lower_blue, upper_blue)
 cv2.imshow("orig", img)
 cv2.imshow("blue", blue_mask)
 cv2.waitKey(0)
-cv2.destroyAllWindows
+cv2.destroyAllWindows()
 
 """
     Bonus 1: Run this program on some of the other pictures from the

@@ -42,4 +42,4 @@ img = cv2.imread(???)     # Fix ME!
 cv2.imshow(???, ???)      # Fix ME!
 # win_imshow(???, ???)    # Windows: Fix ME!
 cv2.waitKey(0)
-cv2.destroyAllWindows
+cv2.destroyAllWindows()

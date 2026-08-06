@@ -36,4 +36,4 @@ cv2.imshow("hsv", hsv)
 #win_show("hsv", hsv)
 
 cv2.waitKey(0)
-cv2.destroyAllWindows
+cv2.destroyAllWindows()

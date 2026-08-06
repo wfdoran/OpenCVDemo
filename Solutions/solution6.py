@@ -55,7 +55,7 @@ cv2.imshow("red", red_mask)
 
 
 cv2.waitKey(0)
-cv2.destroyAllWindows
+cv2.destroyAllWindows()
 
 """
 

@@ -27,4 +27,4 @@ img = cv2.imread(filename)
 # img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
 cv2.imshow(label, img)       
 cv2.waitKey(0)
-cv2.destroyAllWindows
+cv2.destroyAllWindows()

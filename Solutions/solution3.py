@@ -42,6 +42,7 @@ print("red_only shape: ", red_only.shape)
 cv2.imshow("Red!!!!", red_only)
 
 cv2.waitKey(0)
-cv2.destroyAllWindows
+cv2.destroyAllWindows()
+
 
 

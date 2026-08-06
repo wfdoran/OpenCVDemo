@@ -72,7 +72,7 @@ _, blue_mask = cv2.threshold(blue_mask, threshold, 255, cv2.THRESH_BINARY)
 cv2.imshow("orig", img)
 cv2.imshow("blue", blue_mask)
 cv2.waitKey(0)
-cv2.destroyAllWindows
+cv2.destroyAllWindows()
 
 """
     Bonus 1: Run this program on some of the other pictures from the

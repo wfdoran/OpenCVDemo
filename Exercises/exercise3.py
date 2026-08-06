@@ -42,6 +42,6 @@ cv2.imshow("yellow sample", yellow_sample)
 # cv2.imshow("Red!!!!", red_only)
 
 cv2.waitKey(0)
-cv2.destroyAllWindows
+cv2.destroyAllWindows()
 
 
