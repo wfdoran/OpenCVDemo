@@ -1,16 +1,16 @@
 """Exercise 12
 
     In this exercise, we are going to learn about the YOLO format for
-    labeled images.  The file structure for the YOLO format is simple.
-    There is an images subdirectory containing pictures.  Typically
-    .jpg, .jpeg, and .png are supported.  Then in the labels directory
-    there is a corresponding .txt file for each image with the same
-    stem name.  Each line in a labels file represents one marked
-    rectangle on the image.  Each line has 5 values.  The first is
-    what class this subimage is in.  In this example, there is only
+    labeled images.  The file structure for the YOLO samples is
+    simple.  There is an images subdirectory containing the pictures.
+    Typically .jpg, .jpeg, and .png are supported.  Then in the labels
+    directory there is a corresponding .txt file for each image with
+    the same stem name.  Each line in a labels file represents one
+    marked rectangle on the image.  Each line has 5 values.  The first
+    is what class this subimage is in.  In this example, there is only
     one class: class 0 "pollen".  The next two values are x and y of
     the center of the rectangle, but they are normalized to be between
-    0 and 1.  The last last two values are the width and height of the
+    0 and 1.  The last two values are the width and height of the
     rectangle, again normalized to be between 0 and 1.
 
         IMG_4001.txt
@@ -23,7 +23,7 @@
                image1.jpg
                image2.jpg
                 ...
-           /lables
+           /labels
                label1.txt
                label2.txt
 
@@ -33,17 +33,17 @@
        https://roboflow.com/formats/yolo
 
 
-    I generated the lables for the images using the utility
+    I generated the labels for the images using the utility
     anylabeling (https://github.com/vietanhdev/anylabeling).  This
     tool has a GUI interface which allowed me to click and drag a
-    rectangle around each of the pollens in the images and save that
-    in the YOLO format.
+    rectangle around each of the pollen in the images and save that
+    information in the YOLO format.
    
     In this exercise, your goal is to see how well or poorly I did at
     drawing rectangles.  You will read in each image, read in its
-    labels file, and draw the rectangles on the image.  The trickly
+    labels file, and draw the rectangles on the image.  The tricky
     bit is converting the 0-to-1 ratios into the upper-left and
-    lower-right pixels that OpenCV's rectangle command wants.
+    lower-right in pixels that OpenCV's rectangle command wants.
 
 """
 
@@ -55,11 +55,12 @@ data_dir = "../Pics/pollen_data"
 images_dir = os.path.join(data_dir, "images")
 labels_dir = os.path.join(data_dir, "labels")
 
-# Eventually, you will draw a 2 wide blue rectangle around each
+# Eventually, you will draw a 2 pixel wide blue rectangle around each
 # pollen.
 blue = (255,0,0)
 line_width = 2
 
+# loop over all of the images. 
 for image_file in os.listdir(images_dir):
     # Set up the full path to the image file and the label file.
     stem = image_file.split('.')[0]
@@ -89,27 +90,29 @@ for image_file in os.listdir(images_dir):
             x_center, y_center, w, h = (float(a) for a in fields[1:5])
 
             # Compute the upper-left corner and lower-right corner in
-            # pixels.
+            # pixels.  Convert the ratios into pixel values
             x1 = (x_center - w / 2.0) * img_width
             y1 = (y_center - h / 2.0) * img_height
             x2 = (x_center + w / 2.0) * img_width
             y2 = (y_center + h / 2.0) * img_height
 
-            # normalize: round to integers and make are the values
-            # are between [0, img_width) and [0, img_height). 
+            # normalize: round to integers and make sure the values
+            # are between [0, img_width) and [0, img_height).
             x1 = max(0, int(round(x1)))
             y1 = max(0, int(round(y1)))
-            x2 = min(img_width, int(round(x2)))
-            y2 = min(img_height, int(round(y2)))
+            x2 = min(img_width - 1, int(round(x2)))
+            y2 = min(img_height - 1, int(round(y2)))
 
+            # a sanity check
             assert(x1 <= x2 and y1 <= y2)
 
-            # Draw a rectangle
+            # draw a rectangle
             upper_left = (x1, y1)
             lower_right = (x2, y2)
             cv2.rectangle(img, upper_left, lower_right, blue, line_width)
 
-    cv2.imshow("image: %s - class: %d" % (image_file, class_id), img)
+    # display the image with a rectangle around each pollen
+    cv2.imshow("image: %s" % (image_file,), img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     
