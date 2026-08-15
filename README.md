@@ -50,5 +50,12 @@ Notice the print out to the PowerShell when you click on the image.
 Finally, focus on the image window and hit any key to close the program.
 
 
+## LLM/AI
+
+For detecting pollen, in the directory `LLM/Sonnet5` contains an
+LLM/AI `PROMPT.md` and the resulting `pollenPipeline.py`.  Once you
+have gone through all of the exercises, you should be able to
+understand this program.  It is worth going through this program and
+looking at the parameter choices Sonnet5 made in various OpenCV calls.
 
 
