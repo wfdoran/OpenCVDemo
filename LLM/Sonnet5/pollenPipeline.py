@@ -9,6 +9,45 @@ MIN_RADIUS = 10
 MAX_RADIUS = 110
 MIN_FILL_RATIO = 0.5  # fraction of circle area that must be yellow mask
 
+# All of the numbers above (the blur size, the morphology kernel sizes, and
+# especially MIN_RADIUS/MAX_RADIUS) were tuned by looking at the training
+# photos, which are all 640 pixels wide. But a camera phone (like the ones
+# used for the DiscordExamples photos) can take pictures that are 4032
+# pixels wide - over 6 times bigger! At that size a pollen ball isn't 10-110
+# pixels across anymore, it's 60-700+ pixels across, so MAX_RADIUS throws
+# every real ball away and the whole detector comes up empty (or worse,
+# latches onto some small unrelated yellow speck instead). Rather than
+# retuning every constant for every possible camera resolution, we instead
+# shrink any incoming image down to this same 640-pixel width before doing
+# any detection work. That way the pollen balls always appear at roughly
+# the same pixel size they did in the training photos, and all the tuned
+# constants above keep working no matter what resolution the camera feed
+# actually is.
+DETECTION_WIDTH = 640
+
+
+def _shrink_for_detection(image):
+    # Resize the image down (never up) so its width matches DETECTION_WIDTH,
+    # keeping the height proportional so nothing gets stretched or squished.
+    # Returns the resized image plus the "scale" number used to do it, so the
+    # caller can later multiply detected coordinates by 1/scale to translate
+    # them back into the original, full-size image's coordinate system.
+    height, width = image.shape[:2]
+    scale = DETECTION_WIDTH / width
+    if scale >= 1.0:
+        # The image is already no wider than our detection resolution (this
+        # is normally true for the original training/testing photos), so
+        # there's nothing to shrink - use it as-is.
+        return image, 1.0
+
+    new_size = (DETECTION_WIDTH, int(round(height * scale)))
+    # INTER_AREA is the interpolation method OpenCV recommends specifically
+    # for shrinking images - it averages together the pixels being merged,
+    # which looks much cleaner than other methods when making an image
+    # smaller.
+    small = cv2.resize(image, new_size, interpolation=cv2.INTER_AREA)
+    return small, scale
+
 
 def _build_mask(image):
     # This function's job is to turn a normal color photo into a black-and-white
@@ -106,7 +145,14 @@ def _detect_balls(image):
     # is described as (center_x, center_y, radius, confidence). It also
     # returns the yellow mask, in case the caller wants it too.
 
-    mask = _build_mask(image)
+    # Shrink the photo down to our standard detection resolution first (see
+    # the big comment on DETECTION_WIDTH above for why). "scale" tells us how
+    # much smaller the working copy is than the original - for example, a
+    # scale of 0.5 means the working copy is half the size, so a ball found
+    # at radius 20 in the working copy is really radius 40 in the original.
+    detection_image, scale = _shrink_for_detection(image)
+
+    mask = _build_mask(detection_image)
 
     # Slightly blur the mask before circle-detection. This smooths out jagged,
     # noisy edges (like the bumpy outline left by the ball's holes) so the
@@ -185,6 +231,19 @@ def _detect_balls(image):
     # Put the biggest (most likely closest/most prominent) ball first, since
     # runPipeline() below treats the first entry as "the main target."
     kept.sort(key=lambda b: b[2], reverse=True)
+
+    # Everything above was measured on the shrunken working copy, but the
+    # caller needs coordinates that line up with the original, full-size
+    # image (so the circles get drawn in the right place and the reported
+    # positions make sense). Dividing by "scale" undoes the shrinking: if the
+    # working copy was half-size (scale 0.5), multiplying its coordinates by
+    # 1/0.5 = 2 converts them back to full-size coordinates.
+    inverse_scale = 1.0 / scale
+    kept = [
+        (cx * inverse_scale, cy * inverse_scale, r * inverse_scale, ratio)
+        for cx, cy, r, ratio in kept
+    ]
+
     return kept, mask
 
 
