@@ -32,11 +32,11 @@ import matplotlib.pyplot as plt
 
 from solution13 import generate_labelled_data
 
-def convert_to_feature_vectors(trainging_data, data, win_size):
+def convert_to_feature_vectors(training_data, data_dir, win_size):
     """ Using HOG, convert the image data into feature vectors.
 
         training_data     directory path the original images
-        data              the labelled data [(image_filename, (class, x1, y1, x2, y2))]
+        data_dir          the labelled data [(image_filename, (class, x1, y1, x2, y2))]
         win_size          normalized size for each image patch
 
         For each rectangle in data, read in the corresponding image,
@@ -74,7 +74,7 @@ def convert_to_feature_vectors(trainging_data, data, win_size):
     # Convert the return array to numpy arrays.  The next step (train a support
     # vector machine) wants numpy arrays.
     X = np.array(features, dtype=np.float32)
-    y = np.array(labels, dtype=np.float32)
+    y = np.array(labels, dtype=np.int32)
 
     return X, y
         
