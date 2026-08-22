@@ -5,12 +5,11 @@
     gives use patches in the various pictures which contain pollen.
     We also need negative sample.  To obtain those, we are going to
     pick 5 random 96 pixel by 96 pixel regions in each picture and
-    check whether it overlaps any of the regions marked as containing
-    pollen.  If it does not overlap any region, we will record it as a
-    negative.
+    check whether they overlaps any of the regions marked as
+    containing pollen.  If a given patch does not overlap any mark
+    pollen region, we will record it as a negative.
 
     
-
 """
 
 import os
@@ -80,7 +79,7 @@ def generate_labelled_data(data_dir, win_size, neg_per_image):
     training_data = []
     for image_file in os.listdir(images_dir):
         # Set up the full path to the image file and the label file.
-        stem = image_file.split('.')[0]
+        stem = os.path.splitext(image_file)[0]
         label_file = stem + ".txt"
 
         full_image_file = os.path.join(images_dir, image_file)
@@ -118,8 +117,8 @@ def generate_labelled_data(data_dir, win_size, neg_per_image):
                 # are between [0, img_width) and [0, img_height).
                 x1 = max(0, int(round(x1)))
                 y1 = max(0, int(round(y1)))
-                x2 = min(img_width - 1, int(round(x2)))
-                y2 = min(img_height - 1, int(round(y2)))
+                x2 = min(img_width, int(round(x2)))
+                y2 = min(img_height, int(round(y2)))
 
                 training_data.append((image_file, (class_id, x1, y1, x2, y2)))
                 pollen.append((x1, y1, x2, y2))
@@ -140,7 +139,7 @@ def generate_labelled_data(data_dir, win_size, neg_per_image):
     return training_data
 
 # By having a __main__, we can import solution13.py and use
-# generate_labelled_data in another program.
+# generate_labelled_data in a later program.
 if __name__ == "__main__":
     data_dir = "../Pics/pollen_data"
     win_size = (96, 96)

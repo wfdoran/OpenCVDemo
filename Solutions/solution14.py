@@ -14,7 +14,7 @@
       https://www.geeksforgeeks.org/computer-vision/histogram-of-oriented-gradients/
  
     These feature vectors will be 4000+ long.  To visualize the
-    fecture vectors, we will project them down to 2 "principle
+    feature vectors, we will project them down to 2 "principle
     components" for display purposes and see that the pollen and
     non-pollen rectangles are different.
    
@@ -35,8 +35,15 @@ from solution13 import generate_labelled_data
 def convert_to_feature_vectors(training_data, data_dir, win_size):
     """ Using HOG, convert the image data into feature vectors.
 
-        training_data     directory path the original images
-        data_dir          the labelled data [(image_filename, (class, x1, y1, x2, y2))]
+        training_data     the training data
+                           [(image_filename, (class, x1, y1, x2, y2))]
+                          where class is 0 for pollen and -1 for
+                          non-pollen
+    
+        data_dir          directory containing the YOLO data.
+                          The original images are in the images
+                          subdirectory of this directory.
+    
         win_size          normalized size for each image patch
 
         For each rectangle in data, read in the corresponding image,
@@ -90,9 +97,9 @@ if __name__ == "__main__":
     # Convert to feature vectors
     X, y = convert_to_feature_vectors(training_data, data_dir, win_size)
 
-    # Use Principal Component Analysis to project the feature vectors down
-    # to 2 dimensions.  We won't go into the math.  We will just the
-    # implementation in sklearn.
+    # Use Principal Component Analysis to project the feature vectors
+    # down to 2 dimensions.  We won't go into the math.  We will just
+    # use the implementation in sklearn.
     #
     #  https://en.wikipedia.org/wiki/Principal_component_analysis
     # 
