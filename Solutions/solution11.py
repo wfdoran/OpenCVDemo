@@ -80,7 +80,7 @@ color2string = {GREEN: "green ", PURPLE: "purple"}
 for filename in files:
     for color in [GREEN, PURPLE]:
         img_in = cv2.imread(filename, cv2.IMREAD_COLOR)
-        llrobot = [color]
+        llrobot = [color, 0, 0, 0, 0, 0, 0, 0]
         _, img_out, llpython = runPipeline(img_in, llrobot)
         print(filename, color2string[color], llpython)
 

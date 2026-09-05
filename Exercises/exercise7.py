@@ -13,8 +13,8 @@
 
     - Fill in the blue sample.
 
-    This is called "Noise Reduction".  OpenCV has a bunch of
-    ways to to do this, maybe too many ways.
+    This is called "Noise Reduction".  OpenCV has a bunch of ways to
+    do this, maybe too many ways.
 
     Noise reduction usually consists of two parts:
 
@@ -29,7 +29,8 @@
     parameters until you are happy with the result.
 
     Note: to see the actual averaging matrix used by GaussianBlur, you
-    can python compute it for you.  Here is the matrix for ksize=5.
+    can have python compute it for you.  Here is the matrix for
+    ksize=5.
 
     % python
     >>> import cv2

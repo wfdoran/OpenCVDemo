@@ -36,10 +36,13 @@ def train_svm(X, y):
     svm = cv2.ml.SVM_create()               
     svm.setType(???)                        # Fix ME!
     svm.setKernel(???)                      # Fix ME!
-    svm.setTermCriteria((???, ???, ???))    # Fix ME!
+    stop_condition = ???                    # Fix ME!
+    max_iters = ???                         # Fix ME!
+    eps = ???                               # Fix ME!
+    svm.setTermCriteria((stop_condition, max_iters, eps))
 
-    # One thing, they didn't do was set "C".  As a bonus,
-    # look up what this is and play with it.
+    # One thing they didn't do was set "C".  As a bonus, look up what
+    # this is and play with it.
     # 
     # svm.setC(1.0)
 

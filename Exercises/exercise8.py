@@ -1,7 +1,7 @@
 """Exercise 8
 
-    Following the workflow from 2024-2025 season, after getting the
-    mask for the color of interest, we looked for contours in the
+    Following the workflow from the 2024-2025 season, after getting
+    the mask for the color of interest, we looked for contours in the
     mask.  These are the borders around the connected regions in the
     image.
 

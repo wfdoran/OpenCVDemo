@@ -32,8 +32,8 @@ hsv = cv2.cvtColor(???, ??????)    # Fix ME!
 
 cv2.imshow("orig", img)
 cv2.imshow("hsv", hsv)
-#win_show("orig", img)
-#win_show("hsv", hsv)
+#win_imshow("orig", img)
+#win_imshow("hsv", hsv)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()

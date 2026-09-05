@@ -24,7 +24,7 @@ def rectangles_overlap(rect_a, rect_b):
     
         (upper_left_x, upper_left_y, lower_right_x, lower_right_y)
 
-        One way they might not over lap is A is to the left of the B
+        One way they might not overlap is if A is to the left of B.
 
              A1 --+
              |    |
@@ -46,7 +46,7 @@ def rectangles_overlap(rect_a, rect_b):
     return A1x < B2x and A2x > B1x and A1y < B2y and A2y > B1y
     
 def any_overlap(boxes, r_box):
-    """ determine r_box overlaps with any of the recrangles in box.
+    """determine r_box overlaps with any of the recrangles in boxes.
     """
     for box in boxes:
         if rectangles_overlap(box, r_box):

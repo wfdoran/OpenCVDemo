@@ -20,7 +20,7 @@ def hog_set_svm(hog, svm):
 
               hog.setSVM(svm)
 
-        but it does not.  You actaully have to pull out the support
+        but it does not.  You actually have to pull out the support
         vector in the svm and the cut-off threshold.  For now, trust
         that this function does the right thing.
     """
@@ -75,7 +75,7 @@ for image_file in os.listdir(test_dir):
     full_image_file = os.path.join(test_dir, image_file)
     img = cv2.imread(full_image_file)
 
-    # Have detectMutiScale find pollen.
+    # Have detectMultiScale find pollen.
     rects, weights = hog.detectMultiScale(
         ???,                                        # FixME!
         hitThreshold = hit_threshold,
@@ -85,8 +85,7 @@ for image_file in os.listdir(test_dir):
 
     # Draw a box around each pollen detected.
     #
-    # Bonus: look up what the weights are and some
-    # weight info to the picture.
+    # Bonus: look up what the weights are display them in the picture.
     for r in rects:
         upper_left = (???, ???)                    # FixME!
         lower_right = (???, ???)                   # FixME!
