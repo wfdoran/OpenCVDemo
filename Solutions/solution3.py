@@ -14,8 +14,8 @@
 
     % python3 exercise3.py
 
-    This displays just the yellow sample,  Work out the ranges
-    to pull out the red and blue samples.
+    This displays just the yellow sample.  Work out the ranges to pull
+    out the red and blue samples.
 
 """
 import cv2

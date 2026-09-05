@@ -5,7 +5,7 @@
     a Support Vector Machine for learning.  Instead of feeding the
     straight image, we are going to feed it a "feature vector".  We
     need some method for converting an image into a vector of
-    interesting/meaningful featues.  There are many ways to do this.
+    interesting/meaningful features.  There are many ways to do this.
     In this exercise, we are going to use HOG (Histogram of Oriented
     Gradients) which is built into OpenCV.
 
@@ -20,7 +20,7 @@
    
 
     Bonus: invent your own feature vector.  Think up some statistics
-    that might be relatvent such as "number of yellow pixles."
+    that might be relevant such as "number of yellow pixels."
 
 """
 

@@ -36,10 +36,13 @@ def train_svm(X, y):
     svm = cv2.ml.SVM_create()               
     svm.setType(cv2.ml.SVM_C_SVC)            
     svm.setKernel(cv2.ml.SVM_LINEAR)
-    svm.setTermCriteria((cv2.TERM_CRITERIA_MAX_ITER, 100, 1e-6))
+    stop_condition = cv2.TERM_CRITERIA_MAX_ITER | cv2.TERM_CRITERIA_EPS
+    max_iters = 100
+    eps = 1e-6
+    svm.setTermCriteria((stop_condition, max_iters, eps))
 
-    # One thing, they didn't do was set "C".  As a bonus,
-    # look up what this is and play with it.
+    # One thing they didn't do was set "C".  As a bonus, look up what
+    # this is and play with it.
     # 
     # svm.setC(1.0)
 

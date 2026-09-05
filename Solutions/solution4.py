@@ -22,7 +22,8 @@ def good_score_blue(sub_img):
     return int(np.sum(sub_img[:,:,blue_coord])) - int(np.sum(sub_img[:,:,red_coord]))
 
 def score_blue(sub_img):
-    return good_score_blue(sub_img)
+    return bad_score_blue(sub_img)
+    #return good_score_blue(sub_img)
 
 def blue_location(img):
     _, n_cols, _ = img.shape

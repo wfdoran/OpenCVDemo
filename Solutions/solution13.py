@@ -3,13 +3,12 @@
     In this exercise, we are going to create the training data on
     which to apply some machine learning technique.  The YOLO format
     gives use patches in the various pictures which contain pollen.
-    We also need negative sample.  To obtain those, we are going to
+    We also need negative samples.  To obtain those, we are going to
     pick 5 random 96 pixel by 96 pixel regions in each picture and
-    check whether they overlaps any of the regions marked as
-    containing pollen.  If a given patch does not overlap any mark
-    pollen region, we will record it as a negative.
+    check whether they overlap any of the regions marked as containing
+    pollen.  If a given patch does not overlap any marked pollen
+    region, we will record it as a negative.
 
-    
 """
 
 import os
@@ -25,7 +24,7 @@ def rectangles_overlap(rect_a, rect_b):
     
         (upper_left_x, upper_left_y, lower_right_x, lower_right_y)
 
-        One way they might not over lap is A is to the left of the B
+        One way they might not overlap is if A is to the left of B.
 
              A1 --+
              |    |
@@ -39,6 +38,7 @@ def rectangles_overlap(rect_a, rect_b):
         not overlap.  In order to overlap, none of these can hold.
 
         Return TRUE is the rectangles overlap.
+
     """
 
     A1x, A1y, A2x, A2y = rect_a
@@ -47,7 +47,8 @@ def rectangles_overlap(rect_a, rect_b):
     return A1x < B2x and A2x > B1x and A1y < B2y and A2y > B1y
     
 def any_overlap(boxes, r_box):
-    """ determine r_box overlaps with any of the recrangles in box.
+    """determine r_box overlaps with any of the recrangles in boxes.
+
     """
     for box in boxes:
         if rectangles_overlap(box, r_box):
